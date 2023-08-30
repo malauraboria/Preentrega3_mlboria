@@ -26,3 +26,8 @@ function registrarTurno() {
 for (let turno = 1; turno <= 10; turno++) {
     registrarTurno();
 }
+
+let turnosAceptados = listaDeTurnos.filter(turno => turno.nombre !== undefined);
+
+console.log("Turnos aceptados:");
+console.log(turnosAceptados);
