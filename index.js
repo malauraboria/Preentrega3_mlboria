@@ -1,12 +1,9 @@
-
 cargarListaDeTurnos();
-
 
 function cargarListaDeTurnos() {
     const listaDeTurnos = JSON.parse(localStorage.getItem('listaDeTurnos')) || [];
     actualizarListaDeTurnos(listaDeTurnos);
 }
-
 
 async function registrarTurno() {
     const { value: nombre } = await Swal.fire({
@@ -37,15 +34,11 @@ async function registrarTurno() {
         return;
     }
 
-
     let listaDeTurnos = JSON.parse(localStorage.getItem('listaDeTurnos')) || [];
-
 
     const nuevoTurno = { nombre, turno: listaDeTurnos.length + 1 };
 
-
     listaDeTurnos.push(nuevoTurno);
-
 
     localStorage.setItem('listaDeTurnos', JSON.stringify(listaDeTurnos));
 
@@ -55,10 +48,8 @@ async function registrarTurno() {
         text: `Turno #${nuevoTurno.turno} registrado para ${nuevoTurno.nombre}`,
     });
 
-
     actualizarListaDeTurnos(listaDeTurnos);
 }
-
 
 async function cancelarTurno() {
     const { value: numeroDeTurno } = await Swal.fire({
@@ -80,9 +71,7 @@ async function cancelarTurno() {
 
     const turnoCancelado = parseInt(numeroDeTurno);
 
-
     let listaDeTurnos = JSON.parse(localStorage.getItem('listaDeTurnos')) || [];
-
 
     const index = listaDeTurnos.findIndex(turno => turno.turno === turnoCancelado);
 
@@ -103,16 +92,12 @@ async function cancelarTurno() {
         text: `Turno #${turnoCanceladoInfo.turno} para ${turnoCanceladoInfo.nombre} ha sido cancelado.`,
     });
 
-
     listaDeTurnos[index].cancelado = true;
-
 
     localStorage.setItem('listaDeTurnos', JSON.stringify(listaDeTurnos));
 
-
     actualizarListaDeTurnos(listaDeTurnos);
 }
-
 
 function actualizarListaDeTurnos(turnos) {
     const listaDeTurnosElement = document.getElementById("listaDeTurnos");
@@ -125,10 +110,8 @@ function actualizarListaDeTurnos(turnos) {
     });
 }
 
-
 const botonPedirTurno = document.getElementById("pedirTurno");
 botonPedirTurno.addEventListener("click", registrarTurno);
-
 
 const botonCancelarTurno = document.getElementById("cancelarTurno");
 botonCancelarTurno.addEventListener("click", cancelarTurno);
